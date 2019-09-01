@@ -26,7 +26,8 @@ class UserController extends Controller
         return view('users.user_index', compact('users', 'departments'));
     }
 
-    public function create(){
+    public function create()
+    {
 
         $departments = Department::pluck('name', 'id');
 
@@ -35,19 +36,23 @@ class UserController extends Controller
         return view('users.user_create', compact('departments', 'positions'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         dd($request->post());
     }
 
 
-    public function edit(){
+    public function edit()
+    {
     }
 
-    public function update(){
+    public function update()
+    {
 
     }
 
-    public function destroy(){
+    public function destroy()
+    {
 
     }
 
