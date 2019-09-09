@@ -1,3 +1,5 @@
+![ss](./screen-shot1.png)
+
 ### About
 
 Message Broadcast System (MBS) เป็นระบบส่งข้อความ Broadcast ไปยังอุปกรณ์เคลื่อนที่ เช่น มือถือ ที่ติดตั้ง Line App

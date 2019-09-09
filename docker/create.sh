@@ -23,15 +23,15 @@ docker run \
 --workdir /var/www \
 --restart unless-stopped \
 --network mbs_web_net \
--v /Users/x15/Documents/dev/htdocs/rph-mbs/public:/var/www/mbs-web \
--v /Users/x15/Documents/dev/RPH/rph-docker-for-github/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro \
+-v /path/mbs/public:/var/www/mbs-web \
+-v /path/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro \
 -d kongvut/php-laravel
 
 echo "create container webserver"
 docker run \
 --name mbs-webserver \
--v /Users/x15/Documents/dev/htdocs/rph-mbs/public:/var/www/mbs-web \
--v /Users/x15/Documents/dev/RPH/rph-docker-for-github/nginx/site/mbs.web.conf:/etc/nginx/conf.d/mbs.web.conf:ro \
+-v /path/mbs/public:/var/www/mbs-web \
+-v /path/docker/nginx/site/mbs.web.conf:/etc/nginx/conf.d/mbs.web.conf:ro \
 -p 8088:8000 \
 -e TZ=Asia/Bangkok \
 --network mbs_web_net \
