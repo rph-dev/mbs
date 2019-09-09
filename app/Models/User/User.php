@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'position_id', 'department_id', 'activated', 'line_code', 'birth_date'
+        'id', 'name', 'email', 'password', 'position_id', 'department_id', 'activated', 'line_code', 'birth_date'
     ];
 
     /**
@@ -45,6 +45,11 @@ class User extends Authenticatable
         return $query->where('activated', true);
     }
 
+    public function scopeExclude($query, array $value)
+    {
+        return $query->select( array_diff( $this->fillable, $value) );
+    }
+
     /**
      * get department.
      *
@@ -65,12 +70,18 @@ class User extends Authenticatable
         return $this->belongsTo(Position::class, 'position_id', 'id');
     }
 
+
+    public function lineMapping()
+    {
+        return $this->hasOne('App\Models\Mbs\MbsUserMapping', 'user_id', 'id');
+    }
+
     /**
      * @param null $departmentId
      * @return mixed
      */
     public function getUsersDepartment($departmentId = null){
-        $users = self::with(['position', 'department']);
+        $users = self::with(['position', 'department', 'lineMapping']);
 
         if($departmentId) {
             $users->where('department_id', $departmentId);

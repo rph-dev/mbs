@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mbs\MbsUserMapping;
 use App\Models\User\Department;
 use App\Models\User\Position;
 use App\Models\User\User;
+use Hash;
 use Illuminate\Http\Request;
 
+/**
+ * Class UserController
+ * @package App\Http\Controllers\User
+ */
 class UserController extends Controller
 {
 
@@ -19,13 +25,24 @@ class UserController extends Controller
      */
     public function index($departmentId = null)
     {
-        $users = (new User)->getUsersDepartment($departmentId)->paginate(50);
+        $users = (new User)->getUsersDepartment($departmentId)->latest()->paginate(50);
 
         $departments = Department::pluck('name', 'id');
 
         return view('users.user_index', compact('users', 'departments'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function show($id){
+        return redirect(route('company.member.edit', ['id' => $id]));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
 
@@ -36,21 +53,82 @@ class UserController extends Controller
         return view('users.user_create', compact('departments', 'positions'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
-        dd($request->post());
+        $this->validate($request, [
+            'name' => 'required|max:150',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+            'position_id' => 'required',
+            'department_id' => 'required',
+            'line_code' => 'required|unique:users,line_code,',
+            'birth_date' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $input['password'] = Hash::make($input['password']);
+
+        $user = User::create($input);
+
+        return redirect(route('company.member.edit', ['id' => $user->id]))->with('success', "Created: user successful!");
     }
 
 
-    public function edit()
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id)
     {
+        $user = User::findOrFail($id);
+
+        $departments = Department::pluck('name', 'id');
+
+        $positions = Position::pluck('name', 'id');
+
+        return view('users.user_edit', compact('departments', 'positions', 'user'));
     }
 
-    public function update()
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function update($id, Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:150',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'position_id' => 'required',
+            'department_id' => 'required',
+            'line_code' => 'required|unique:users,line_code,'.$id,
+        ]);
 
+        if (!$request->post('unlink_line')){
+            MbsUserMapping::where('user_id', $id)->update(['user_id' => null]);
+        }
+
+        $user = User::findOrFail($id);
+
+        $input = $request->only(['name', 'email', 'password', 'position_id', 'department_id', 'line_code', 'birth_date', 'activated']);
+
+        $user->fill($input);
+
+        $user->save();
+
+        return redirect(route('company.member.edit', ['id' => $user->id]))->with('success', "Updated: user successful!");
     }
 
+    /**
+     *
+     */
     public function destroy()
     {
 
