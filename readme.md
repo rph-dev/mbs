@@ -31,8 +31,11 @@ Message Broadcast System (MBS) เป็นระบบส่งข้อคว�
 - XML PHP Extension
 
 ### Installation
+
 ติดตั้งด้วย Docker
-1. สร้างโปรเจคและ Docker Container
+
+1.  สร้างโปรเจคและ Docker Container
+
 ```sh
 $ git clone https://github.com/rph-dev/mbs
 $ cd mbs
@@ -40,92 +43,99 @@ $ chmod -R +x ./docker
 $ cd docker
 $ ./create.sh
 ```
-2. ตั้งค่า .env ของ Laravel
 
-2.1 ส่วน Database connection
-```sh
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=web_mbs
-DB_USERNAME=root
-DB_PASSWORD=root
-```
+2.  ตั้งค่า .env ของ Laravel
 
-หรือส่วนอื่น ๆ เช่น (หากต้องการ)
+    2.1 ส่วน Database connection
+    
+    ```sh
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=web_mbs
+    DB_USERNAME=root
+    DB_PASSWORD=root
+    ```
 
-```sh
-APP_NAME="Linetify"
-APP_ENV=local
-APP_DEBUG=true
-APP_URL=http://localhost
-```
+    หรือส่วนอื่น ๆ เช่น (หากต้องการ)
+    
+    ```sh
+    APP_NAME="Linetify"
+    APP_ENV=local
+    APP_DEBUG=true
+    APP_URL=http://localhost
+    ```
 
-2.2 ตั้งค่า Line Token (ขอ Token key ได้ที่ https://developers.line.biz/console)
-```sh
-LINE_MBS_CHANNEL_ACCESS_TOKEN="xxx"
-LINE_MBS_CHANNEL_SECRET="xxx"
-```
+    2.2 ตั้งค่า Line Token (ขอ Token key ได้ที่ https://developers.line.biz/console)
+    ```sh
+    LINE_MBS_CHANNEL_ACCESS_TOKEN="xxx"
+    LINE_MBS_CHANNEL_SECRET="xxx"
+    ```
 
-3. ตั้งค่า Docker path
+3.  ตั้งค่า Docker path
 
-3.1 ที่ไฟล์ ./docker/start.sh ให้กำหนด folder path ที่อยู่โปรเจคให้ถูกต้อง
+    3.1 ที่ไฟล์ ./docker/start.sh ให้กำหนด folder path ที่อยู่โปรเจคให้ถูกต้อง
+    
+    ```sh
+    -v /your_folder_path/mbs/public:/var/www/mbs-web
+    -v /your_folder_path/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro
+    ```
+    และ
+    ```sh
+    -v /your_folder_path/mbs/public:/var/www/mbs-web
+    -v /your_folder_path/docker/nginx/site/mbs.web.conf:/etc/nginx/conf.d/mbs.web.conf:ro
+    ```
 
-```sh
--v /your_folder_path/mbs/public:/var/www/mbs-web
--v /your_folder_path/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro
-```
-และ
-```sh
--v /your_folder_path/mbs/public:/var/www/mbs-web
--v /your_folder_path/docker/nginx/site/mbs.web.conf:/etc/nginx/conf.d/mbs.web.conf:ro
-```
+4.  การติดตั้ง
 
-2. การติดตั้ง
+    4.1 เรียกคำสั่งติดตั้ง
+    ```sh
+    $ ./install.sh
+    ```
 
-2.1 เรียกคำสั่งติดตั้ง
-```sh
-$ ./install.sh
-```
+    4.2 เข้าใช้งานผ่าน
+    
+    User สำหรับทดสอบ\
+    username: demo@email.com\
+    password: demo
+    
+    ```sh
+    http://127.0.0.1:8088
+    ```
+5.  การตั้งค่าอื่น ๆ
 
-2.2 เข้าใช้งานผ่าน
+    5.1 กรณีต้องการ Stop service
+    
+    ```sh
+    $ ./stop.sh
+    ```
 
-User สำหรับทดสอบ\
-username: demo@email.com\
-password: demo
-```
-http://127.0.0.1:8088
-```
+    5.2 กรณีต้องการ Start service
+    
+    ```sh
+    $ ./start.sh
+    ```
 
-3. การตั้งค่าอื่น ๆ
-3.1 กรณีต้องการ Stop service
-```sh
-$ ./stop.sh
-```
+    5.3 กรณีต้องการลบ Docker Container
+    
+    ```sh
+    $ ./remove.sh
+    ```
 
-3.2 กรณีต้องการ Start service
-```sh
-$ ./start.sh
-```
-
-3.3 กรณีต้องการลบ Docker Container
-```sh
-$ ./remove.sh
-```
-
-3.4 กรณีต้องการลบข้อมูลทั้งหมด
-```sh
-$ ./remove-data.sh
-```
+    5.4 กรณีต้องการลบข้อมูลทั้งหมด
+    
+    ```sh
+    $ ./remove-data.sh
+    ```
 
 ### Line Webhook (Development)
-1. ตั้งค่า SSH tunnel (SSH port forwarding) สำหรับ SSL
+1.  ตั้งค่า SSH tunnel (SSH port forwarding) สำหรับ SSL
 ```sh
 $ ssh -R rph-line-bot:443:127.0.0.1:8088 serveo.net
 ```
 ซึ่งจะได้ URL ตามตัวอย่างนี้ https://rph-line-bot.serveo.net
 
-2. โดยระบบได้กำหมด Route ของ Webhook URL ไว้เป็น /api/line-bot/callback ดังนั้นจะได้ URL ตัวอย่างเช่น https://rph-line-bot.serveo.net/api/line-bot/callback
+2.  โดยระบบได้กำหมด Route ของ Webhook URL ไว้เป็น /api/line-bot/callback ดังนั้นจะได้ URL ตัวอย่างเช่น https://rph-line-bot.serveo.net/api/line-bot/callback
 
 *แนะนำให้ใช้ Webhook URL นี้สำหรับการทดสอบเท่านั้น โดยท่านสามารถนำ URL นี้ไปใช้ตั้งค่าสำหรับ Webhook Line Event ที่  https://developers.line.biz/console
 
