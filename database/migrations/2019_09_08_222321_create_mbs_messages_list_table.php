@@ -17,7 +17,7 @@ class CreateMbsMessagesListTable extends Migration
             $table->bigIncrements('id');
             $table->integer('message_id');
             $table->bigInteger('group_id');
-            $table->integer('user_id');
+            $table->bigInteger('user_id');
             $table->integer('position_id');
             $table->integer('department_id');
             $table->timestamps();

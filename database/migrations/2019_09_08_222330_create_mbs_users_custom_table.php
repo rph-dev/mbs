@@ -15,6 +15,10 @@ class CreateMbsUsersCustomTable extends Migration
     {
         Schema::create('mbs_users_custom', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('password_rand', 10);
+            $table->string('detail');
+            $table->string('activated');
             $table->timestamps();
             $table->softDeletes();
         });

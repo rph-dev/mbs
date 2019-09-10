@@ -15,6 +15,12 @@ class CreateMbsGroupTable extends Migration
     {
         Schema::create('mbs_group', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('group_id');
+            $table->string('contact_id', 20);
+            $table->tinyInteger('total');
+            $table->bigInteger('user_id');
+            $table->integer('position_id');
+            $table->integer('department_id');
             $table->timestamps();
             $table->softDeletes();
         });
