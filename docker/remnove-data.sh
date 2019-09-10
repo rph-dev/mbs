@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./stop.sh
+./remove.sh
 
 docker volume rm mbs_mariadb
 echo "remove mariadb complete"
