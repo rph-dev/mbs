@@ -1,4 +1,6 @@
-![ss](./screen-shot1.png)
+![ss1](./screen-shot1.png)
+
+![ss3](./screen-shot3.gif) ![ss2](./screen-shot2.png)
 
 ### About
 
@@ -64,6 +66,9 @@ $ ./install.sh
 ```
 http://127.0.0.1:8088
 ```
+User ทดสอบ\
+username: demo@email.com\
+password: demo
 
 2.2 กรณีต้องการ Stop service
 ```sh
