@@ -485,21 +485,21 @@ class HomeController extends Controller
             if(count($message->files)){
                 $composeMsg .= "\nไฟล์ที่แนบ:";
                 foreach ($message->files as $file){
-                    $composeMsg .= "\n- {$appUrl}/{$file->file_path}{$file->file_name}";
+                    $composeMsg .= "\n- {$appUrl}{$file->file_path}{$file->file_name}";
                 }
             }
 
         }else if($message->type === 'image'){
             $messages[] = [
                 'type' => "image",
-                'originalContentUrl' => "{$appUrl}/{$message->files[0]->file_path}{$message->files[0]->file_name}",
-                'previewImageUrl' => "{$appUrl}/{$message->files[0]->file_path}{$message->files[0]->file_name}"
+                'originalContentUrl' => "{$appUrl}{$message->files[0]->file_path}{$message->files[0]->file_name}",
+                'previewImageUrl' => "{$appUrl}{$message->files[0]->file_path}{$message->files[0]->file_name}"
             ];
         }else if($message->type === 'video'){
             $messages[] = [
                 'type' => "video",
-                'originalContentUrl' => "{$appUrl}/{$message->files[0]->file_path}{$message->files[0]->file_name}",
-                'previewImageUrl' => "{$appUrl}/{$message->files[0]->file_path}{$message->files[0]->video_thumbnail}"
+                'originalContentUrl' => "{$appUrl}{$message->files[0]->file_path}{$message->files[0]->file_name}",
+                'previewImageUrl' => "{$appUrl}{$message->files[0]->file_path}{$message->files[0]->video_thumbnail}"
             ];
         }
 

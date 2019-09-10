@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^5.8"
+        "laravelcollective/html": "^5.8",
+        "php-ffmpeg/php-ffmpeg": "^0.14.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
