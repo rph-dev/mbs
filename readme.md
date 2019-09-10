@@ -66,7 +66,7 @@ $ ./install.sh
 ```
 http://127.0.0.1:8088
 ```
-User ทดสอบ\
+User สำหรับทดสอบ\
 username: demo@email.com\
 password: demo
 
@@ -97,9 +97,7 @@ $ ssh -R rph-line-bot:443:127.0.0.1:8088 serveo.net
 ```
 ซึ่งจะได้ URL ตามตัวอย่างนี้ https://rph-line-bot.serveo.net
 
-2. โดยระบบได้กำหมด Route ของ Webhook URL ไว้ดังนี้
-
-https://rph-line-bot.serveo.net/api/line-bot/callback
+2. โดยระบบได้กำหมด Route ของ Webhook URL ไว้เป็น /api/line-bot/callback ดังนั้นจะได้ URL ตัวอย่างเช่น https://rph-line-bot.serveo.net/api/line-bot/callback
 
 *แนะนำให้ใช้ Webhook URL นี้สำหรับการทดสอบเท่านั้น โดยท่านสามารถนำ URL นี้ไปใช้ตั้งค่าสำหรับ Webhook Line Event ที่  https://developers.line.biz/console
 
