@@ -63,7 +63,7 @@
                         <span>ไฟล์ที่แนบ:</span>
                         <ul>
                             <li v-for="(file, file_index) in data.message.files">
-                                <a target="_blank" :href="`/storage/mbs${file.file_path}${file.file_name}`">(@{{ file.file_type }}) @{{ `${file.file_name_old}` }}</a>
+                                <a target="_blank" :href="`${file.file_path}${file.file_name}`">(@{{ file.file_type }}) @{{ `${file.file_name_old}` }}</a>
                             </li>
                         </ul>
                     </div>
