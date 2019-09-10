@@ -1,4 +1,4 @@
-![ss1](./screen-shot1.png)
+![ss1](./screen-shot.png)
 
 ![ss3](./screen-shot3.gif) ![ss2](./screen-shot2.png)
 
