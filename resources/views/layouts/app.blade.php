@@ -7,13 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} - @yield('title', 'Home')</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
     <link rel="stylesheet" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    @yield('css')
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @stack('css')
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 
@@ -32,7 +32,7 @@
                     <a class="nav-link" href="/mbs"><i class="fa fa-commenting-o" aria-hidden="true"></i> Broadcast Messaging</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/member"><i class="fa fa-users" aria-hidden="true"></i> List of Members</a>
+                    <a class="nav-link" href="/company/member"><i class="fa fa-users" aria-hidden="true"></i> List of Members</a>
                 </li>
             </ul>
 
@@ -78,10 +78,20 @@
     </main>
 </div>
 
+<footer class="app-footer" style="margin-left:0;">
+    <div>
+        <a target="_blank" href="https://github.com/rph-dev/mbs">RPH Linetify</a>
+        <span>© 2019 RPH.</span>
+    </div>
+    <div class="ml-auto">
+        <span>Powered by</span>
+        <a target="_blank" href="http://rph.co.th">RPH</a>
+    </div>
+</footer>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
-@yield('js')
+@stack('js')
 </body>
 </html>

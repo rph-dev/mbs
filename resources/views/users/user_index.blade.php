@@ -25,13 +25,13 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{ ((($_GET['page'] ?? 1)-1) *50)+$loop->iteration }}</td>
-                        <td><a href="/user/1/show" target="_blank">{{ $user->name }}</a></td>
+                        <td><a href="/company/member/{{ $user->id }}" target="_blank">{{ $user->name }}</a></td>
                         <td><span class="label label-inverse">{{ $user->position->name }}</span></td>
                         <td>{{ $user->department->name }}</td>
                         <td>{{ $user->line_code }}</td>
-                        <td><i class="fa fa-commenting-o text-success"></i> ยังไม่ได้เชื่อมต่อ</td>
+                        <td>{!! $user->lineMapping ? '<i class="fa fa-commenting-o text-success"></i> เชื่อมต่อแล้ว' : '<i class="fa fa-commenting-o text-danger"></i> ยังไม่ได้เชื่อมต่อ' !!}</td>
                         <td>
-                            <a href="/user/1/show" target="_blank" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ti ti-pencil-alt" aria-hidden="true"></i> Edit</a>
+                            <a href="/company/member/{{ $user->id }}/edit" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ti ti-pencil-alt" aria-hidden="true"></i> Edit</a>
                         </td>
                     </tr>
                 @endforeach

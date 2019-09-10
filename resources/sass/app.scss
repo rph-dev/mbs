@@ -8,11 +8,11 @@
 html, body {
     font-family: $font-family-sans-serif;
     font-weight: 300;
-    font-size: large;
+    font-size: medium;
     margin: 0;
 }
 
-.email-app {
+.message-app {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
@@ -21,73 +21,73 @@ html, body {
     border: 1px solid #c8ced3;
 }
 
-.email-app nav {
-    -ms-flex: 0 0 200px;
-    flex: 0 0 200px;
+.message-app nav {
+    -ms-flex: 0 0 300px;
+    flex: 0 0 300px;
     padding: 1rem;
     border-right: 1px solid #c8ced3;
 }
 
-.email-app nav .btn-block {
+.message-app nav .btn-block {
     margin-bottom: 15px;
 }
 
-.email-app nav .nav {
+.message-app nav .nav {
     -ms-flex-direction: column;
     flex-direction: column;
 }
 
-.email-app nav .nav-item {
+.message-app nav .nav-item {
     position: relative;
 }
 
-.email-app nav .nav-link {
+.message-app nav .nav-link {
     color: #23282c;
     border-bottom: 1px solid #c8ced3;
 }
 
-.email-app nav .nav-link i {
+.message-app nav .nav-link i {
     width: 20px;
     margin: 0 10px 0 0;
     font-size: 14px;
     text-align: center;
 }
 
-.email-app nav .nav-link .badge {
+.message-app nav .nav-link .badge {
     float: right;
     margin-top: 4px;
     margin-left: 10px;
 }
 
-.email-app main {
+.message-app main {
     -ms-flex: 1;
     flex: 1;
     min-width: 0;
     padding: 1rem;
 }
 
-.email-app .inbox .toolbar {
+.message-app .inbox .toolbar {
     padding-bottom: 1rem;
     border-bottom: 1px solid #c8ced3;
 }
 
-.email-app .inbox .messages {
+.message-app .inbox .messages {
     padding: 0;
     list-style: none;
 }
 
-.email-app .inbox .message {
+.message-app .inbox .message {
     position: relative;
     padding: 1rem 1rem 1rem 2rem;
     cursor: pointer;
     border-bottom: 1px solid #c8ced3;
 }
 
-.email-app .inbox .message:hover {
+.message-app .inbox .message:hover {
     background: #f0f3f5;
 }
 
-.email-app .inbox .message .actions {
+.message-app .inbox .message .actions {
     position: absolute;
     left: 0;
     display: -ms-flexbox;
@@ -96,27 +96,27 @@ html, body {
     flex-direction: column;
 }
 
-.email-app .inbox .message .actions .action {
+.message-app .inbox .message .actions .action {
     width: 2rem;
     margin-bottom: 0.5rem;
     color: #c8ced3;
     text-align: center;
 }
 
-.email-app .inbox .message a {
+.message-app .inbox .message a {
     color: #000;
 }
 
-.email-app .inbox .message a:hover {
+.message-app .inbox .message a:hover {
     text-decoration: none;
 }
 
-.email-app .inbox .message.unread .header,
-.email-app .inbox .message.unread .title {
+.message-app .inbox .message.unread .header,
+.message-app .inbox .message.unread .title {
     font-weight: 700;
 }
 
-.email-app .inbox .message .header {
+.message-app .inbox .message .header {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
@@ -124,32 +124,32 @@ html, body {
     margin-bottom: 0.5rem;
 }
 
-.email-app .inbox .message .header .date {
+.message-app .inbox .message .header .date {
     margin-left: auto;
 }
 
-.email-app .inbox .message .title {
+.message-app .inbox .message .title {
     margin-bottom: 0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.email-app .inbox .message .description {
+.message-app .inbox .message .description {
     font-size: 12px;
 }
 
-.email-app .message .toolbar {
+.message-app .message .toolbar {
     padding-bottom: 1rem;
     border-bottom: 1px solid #c8ced3;
 }
 
-.email-app .message .details .title {
+.message-app .message .details .title {
     padding: 1rem 0;
     font-weight: 700;
 }
 
-.email-app .message .details .header {
+.message-app .message .details .header {
     display: -ms-flexbox;
     display: flex;
     padding: 1rem 0;
@@ -158,36 +158,36 @@ html, body {
     border-bottom: 1px solid #c8ced3;
 }
 
-.email-app .message .details .header .avatar {
+.message-app .message .details .header .avatar {
     width: 40px;
     height: 40px;
     margin-right: 1rem;
 }
 
-.email-app .message .details .header .from {
+.message-app .message .details .header .from {
     -ms-flex-item-align: center;
     align-self: center;
     font-size: 12px;
     color: #73818f;
 }
 
-.email-app .message .details .header .from span {
+.message-app .message .details .header .from span {
     display: block;
     font-weight: 700;
 }
 
-.email-app .message .details .header .date {
+.message-app .message .details .header .date {
     margin-left: auto;
 }
 
-.email-app .message .details .attachments {
+.message-app .message .details .attachments {
     padding: 1rem 0;
     margin-bottom: 1rem;
     border-top: 3px solid #f0f3f5;
     border-bottom: 3px solid #f0f3f5;
 }
 
-.email-app .message .details .attachments .attachment {
+.message-app .message .details .attachments .attachment {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-item-align: center;
@@ -196,38 +196,38 @@ html, body {
     font-size: 12px;
 }
 
-.email-app .message .details .attachments .attachment .badge {
+.message-app .message .details .attachments .attachment .badge {
     margin: 0 0.5rem;
     line-height: inherit;
 }
 
-.email-app .message .details .attachments .attachment .menu {
+.message-app .message .details .attachments .attachment .menu {
     margin-left: auto;
 }
 
-.email-app .message .details .attachments .attachment .menu a {
+.message-app .message .details .attachments .attachment .menu a {
     padding: 0 0.5rem;
     font-size: 14px;
     color: #c8ced3;
 }
 
 @media (max-width: 767.98px) {
-    .email-app {
+    .message-app {
         -ms-flex-direction: column;
         flex-direction: column;
     }
-    .email-app nav {
+    .message-app nav {
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
     }
 }
 
 @media (max-width: 575.98px) {
-    .email-app .message .header {
+    .message-app .message .header {
         -ms-flex-flow: row wrap;
         flex-flow: row wrap;
     }
-    .email-app .message .header .date {
+    .message-app .message .header .date {
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
     }

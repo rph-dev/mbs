@@ -58,4 +58,10 @@ class Department extends Model
         return $department->get();
     }
 
+
+    public static function getDepartmentList(){
+        $departments = Department::pluck('name', 'id');
+        return $departments;
+    }
+
 }

@@ -1,72 +1,122 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+![ss](./screen-shot1.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### About
 
-## About Laravel
+Message Broadcast System (MBS) เป็นระบบส่งข้อความ Broadcast ไปยังอุปกรณ์เคลื่อนที่ เช่น มือถือ ที่ติดตั้ง Line App
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- ส่งข้อความ Broadcast ไปได้ที่ละหลายคน
+- รองรับประเภท ข้อความ รูปภาพ วิดีโอ
+- ผู้ใช้งานที่ เพิ่มเพื่อน และยืนยันตัวตนด้วย Code + วดป. เกิด แล้วเท่านั้น จึงจะสามารถรับข้อความ Broadcast ได้
+- สามารถสร้างกลุ่มสำหรับผู้รับข้อความเฉพาะ
+- สามารถเพิ่มผู้ใช้งานกลุ่มพิเศษ (ที่ไม่มี วดป. เกิด) เช่น Line ID ของหน่วยงาน หรือแผนกต่าง ๆ ภายในองค์กร
+- ระบบจัดการผู้ใช้งานงานเบื้องต้น โดยสามารถ เพิ่ม แก้ไข ยกเลิกการผูก Line ID กับ ผู้ใช้งาน
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### System Requirements
+- Linux OS หรือ Windows server (ติดตั้ง ffmpeg package หากต้องการส่งข้อความประเภทวิดีโอ)
+- MySQL 5.7+ หรือ MariaDB 10.2+
+- Nginx หรือ Apache Server
+- Git
+- PHP >= 7.1.3
+- BCMath PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+- Mbstring PHP Extension
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
 
-## Learning Laravel
+### Installation
+ติดตั้งด้วย Docker
+1. สร้างโปรเจคและ Docker Container
+```sh
+$ git clone https://github.com/rph-dev/mbs
+$ cd mbs
+$ chmod -R +x ./docker
+$ cd docker
+$ ./create.sh
+```
+##### แก้ไข .env
+1.1 ส่วน Database connection
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=web_mbs
+DB_USERNAME=root
+DB_PASSWORD=root
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1.2 ตั้งค่า Line Token (ขอ Token key ได้ที่ https://developers.line.biz/console)
+```
+LINE_MBS_CHANNEL_ACCESS_TOKEN="xxx"
+LINE_MBS_CHANNEL_SECRET="xxx"
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. การติดตั้ง
+```sh
+$ ./install.sh
+```
 
-## Laravel Sponsors
+2.1 เข้าใช้งานผ่าน
+```
+http://127.0.0.1:8088
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2.2 กรณีต้องการ Stop service
+```sh
+$ ./stop.sh
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+2.3 กรณีต้องการ Start service
+```sh
+$ ./start.sh
+```
 
-## Contributing
+2.4 กรณีต้องการลบ Docker Container
+```sh
+$ ./remove.sh
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2.5 กรณีต้องการลบข้อมูลทั้งหมด
+```sh
+$ ./remove-data.sh
+```
 
-## Security Vulnerabilities
+### Line Webhook (Development)
+1. ตั้งค่า SSH tunnel (SSH port forwarding) สำหรับ SSL
+```sh
+$ ssh -R rph-line-bot:443:127.0.0.1:8088 serveo.net
+```
+ซึ่งจะได้ URL ตามตัวอย่างนี้ https://rph-line-bot.serveo.net
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. โดยระบบได้กำหมด Route ของ Webhook URL ไว้ดังนี้
 
-## License
+https://rph-line-bot.serveo.net/api/line-bot/callback
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+*แนะนำให้ใช้ Webhook URL นี้สำหรับการทดสอบเท่านั้น โดยท่านสามารถนำ URL นี้ไปใช้ตั้งค่าสำหรับ Webhook Line Event ที่  https://developers.line.biz/console
+
+### Bug Reports & Feature Requests
+หากพบข้อผิดพาด (Programming bug) หรือคุณสมบัติอื่น ๆ ที่อยากเพิ่มเติมในอนาคต สามารถรายงานได้ที่ [GitHub Issues](https://github.com/rph-dev/mbs/issues)
+
+### Upgrading
+สามารถรันคำสั่งนี้เมื่อต้องการ Update ระบบ
+```sh
+$ ./update.sh
+```
+
+### Contributing
+ระบบ Message Broadcast System (MBS) พัฒนาด้วย Laravel Framework 5.8 และ Vue.js หากท่านมองเห็นว่ามี Code ส่วนใดเหมาะสมที่ควรแก้ไข หรือปรับปรุงเพิ่มประสิทธิภาพให้ดีขึ้น ท่านสามารถ Fork โปรเจคนี้เพื่อส่ง Pull Requests เข้ามาได้ทุกเมื่อ
+
+### Security Vulnerabilities
+
+หากคุณค้นพบช่องโหว่ด้านความปลอดภัยภายใน Message Broadcast System (MBS) โปรดส่งอีเมลไปที่ Kongvut Sangkla ผ่านทาง [kongvut.s@rph.co.th](mailto:kongvut.s@rph.co.th) ช่องโหว่ความปลอดภัยทั้งหมดจะได้รับการแก้ไขทันที
+
+### Credits
+ฝ่ายเทคโนโลยีสารสนเทศ โรงพยาบาลราชพฤกษ์ Ratchaphruek Hospital Public Company Limited (RPH), Thailand
+
+### License
+
+The Message Broadcast System (MBS) is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
