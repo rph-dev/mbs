@@ -21,6 +21,7 @@ docker run \
 --network mbs_web_net \
 -v /path/mbs:/var/www/mbs-web \
 -v /path/mbs/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro \
+--link mbs-mariadb:db \
 -d kongvut/php-laravel
 
 echo "create container webserver"
@@ -34,4 +35,5 @@ docker run \
 --network mbs_web_net \
 --restart unless-stopped \
 --workdir /var/www \
+--link mbs-php-fpm:php-fpm \
 -d nginx

@@ -11,11 +11,13 @@ class PositionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('positions')->insert([
-            ['name' => 'ผู้อำนวยการ'],
-            ['name' => 'ผู้จัดการ'],
-            ['name' => 'เลขานุการ'],
-            ['name' => 'พนักงาน']
-        ]);
+        if(!DB::table('positions')->count()){
+            DB::table('positions')->insert([
+                ['name' => 'ผู้อำนวยการ'],
+                ['name' => 'ผู้จัดการ'],
+                ['name' => 'เลขานุการ'],
+                ['name' => 'พนักงาน']
+            ]);
+        }
     }
 }
