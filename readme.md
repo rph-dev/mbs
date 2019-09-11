@@ -44,101 +44,95 @@ Message Broadcast System (MBS) คือระบบส่งข้อควา�
 
 1.  สร้างโปรเจคและ Docker Container
 
-```sh
+```bash
 $ git clone https://github.com/rph-dev/mbs
-$ cd mbs
+```
+
+2.  ตั้งค่า Docker path โดยที่ไฟล์ ./docker/start.sh ให้กำหนด folder path ที่อยู่โปรเจคให้ถูกต้อง
+
+    2.1 Container php-fpm
+    
+    ```bash
+    -v /your_folder_path/mbs:/var/www/mbs-web
+    -v /your_folder_path/mbs/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro
+    ```
+    2.2 Container webserver
+    ```bash
+    -v /your_folder_path/mbs:/var/www/mbs-web
+    -v /your_folder_path/mbs/docker/nginx/site/mbs.web.conf:/etc/nginx/conf.d/mbs.web.conf:ro
+    ```
+
+3. สร้าง Docker Container
+
+```bash
+$ cd /your_folder_path/mbs
 $ chmod -R +x ./docker
 $ cd docker
 $ ./create.sh
 ```
 
-2.  ตั้งค่า .env ของ Laravel
+4.  ตั้งค่าไฟล์ .env ของ Laravel
 
-    2.1 ส่วน Database connection
+    4.1 ตั้งค่า URL และส่วนอื่น ๆ (หากต้องการ)
     
-    ```sh
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=web_mbs
-    DB_USERNAME=root
-    DB_PASSWORD=root
-    ```
-
-    หรือส่วนอื่น ๆ เช่น (หากต้องการ)
-    
-    ```sh
+    ```bash
     APP_NAME="Linetify"
     APP_ENV=local
     APP_DEBUG=true
     APP_URL=http://localhost
     ```
 
-    2.2 ตั้งค่า Line Token (ขอ Token key ได้ที่ https://developers.line.biz/console)
-    ```sh
+    4.2 ตั้งค่า Line Token (ขอ Token key ได้ที่ https://developers.line.biz/console)
+    ```bash
     LINE_MBS_CHANNEL_ACCESS_TOKEN="xxx"
     LINE_MBS_CHANNEL_SECRET="xxx"
     ```
 
-3.  ตั้งค่า Docker path
+5.  การติดตั้ง
 
-    3.1 ที่ไฟล์ ./docker/start.sh ให้กำหนด folder path ที่อยู่โปรเจคให้ถูกต้อง
-    
-    ```sh
-    -v /your_folder_path/mbs/public:/var/www/mbs-web
-    -v /your_folder_path/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro
-    ```
-    และ
-    ```sh
-    -v /your_folder_path/mbs/public:/var/www/mbs-web
-    -v /your_folder_path/docker/nginx/site/mbs.web.conf:/etc/nginx/conf.d/mbs.web.conf:ro
-    ```
-
-4.  การติดตั้ง
-
-    4.1 เรียกคำสั่งติดตั้ง
-    ```sh
+    5.1 เรียกคำสั่งติดตั้ง
+    ```bash
     $ ./install.sh
     ```
 
-    4.2 เข้าใช้งานผ่าน
+    5.2 เข้าใช้งานผ่าน
     
     User สำหรับทดสอบ\
     username: demo@email.com\
     password: demo
     
-    ```sh
+    ```bash
     http://127.0.0.1:8088
     ```
-5.  การตั้งค่าอื่น ๆ
+6.  การตั้งค่าอื่น ๆ
 
-    5.1 กรณีต้องการ Stop service
+    6.1 กรณีต้องการ Stop service
     
-    ```sh
+    ```bash
     $ ./stop.sh
     ```
 
-    5.2 กรณีต้องการ Start service
+    6.2 กรณีต้องการ Start service
     
-    ```sh
+    ```bash
     $ ./start.sh
     ```
 
-    5.3 กรณีต้องการลบ Docker Container
+    6.3 กรณีต้องการลบ Docker Container
     
-    ```sh
+    ```bash
     $ ./remove.sh
     ```
 
-    5.4 กรณีต้องการลบข้อมูลทั้งหมด
+    6.4 กรณีต้องการลบข้อมูลทั้งหมด
     
-    ```sh
+    ```bash
     $ ./remove-data.sh
     ```
 
 ### Line Webhook (Development)
 1.  ตั้งค่า SSH tunnel (SSH port forwarding) สำหรับ SSL
-```sh
+```bash
 $ ssh -R rph-line-bot:443:127.0.0.1:8088 serveo.net
 ```
 ซึ่งจะได้ URL ตามตัวอย่างนี้ https://rph-line-bot.serveo.net
@@ -149,7 +143,7 @@ $ ssh -R rph-line-bot:443:127.0.0.1:8088 serveo.net
 
 ### Upgrading
 สามารถรันคำสั่งนี้เมื่อต้องการ Update ระบบ
-```sh
+```bash
 $ ./update.sh
 ```
 
