@@ -10,6 +10,7 @@ docker run \
 -e MYSQL_ROOT_PASSWORD=root \
 -e TZ=Asia/Bangkok \
 -v mbs_mariadb:/var/lib/mysql \
+--add-host "db:127.0.0.1" \
 -d mariadb:10.3
 
 echo "create container php-fpm"
@@ -21,6 +22,7 @@ docker run \
 --network mbs_web_net \
 -v /path/mbs:/var/www/mbs-web \
 -v /path/mbs/docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini:ro \
+--add-host "php-fpm:127.0.0.1" \
 -d kongvut/php-laravel
 
 echo "create container webserver"
