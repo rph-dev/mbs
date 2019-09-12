@@ -96,7 +96,7 @@ $ ./create.sh
     APP_URL=http://localhost
     ```
 
-    4.2 ตั้งค่า Line Token (ขอ Token key ได้ที่ https://developers.line.biz/console)
+    4.2 ตั้งค่า Line Token (สามารถสมัครเพื่อขอรับ Token key ได้ที่ https://developers.line.biz)
     ```bash
     LINE_MBS_CHANNEL_ACCESS_TOKEN="xxx"
     LINE_MBS_CHANNEL_SECRET="xxx"
@@ -145,6 +145,7 @@ $ ./create.sh
     ```
 
 ### Line Webhook (Development)
+
 1.  ตั้งค่า SSH tunnel (SSH port forwarding) สำหรับ SSL
 ```bash
 $ ssh -R rph-line-bot:443:127.0.0.1:8088 serveo.net
@@ -153,25 +154,29 @@ $ ssh -R rph-line-bot:443:127.0.0.1:8088 serveo.net
 
 2.  โดยระบบได้กำหมด Route ของ Webhook URL ไว้เป็น /api/line-bot/callback ดังนั้นจะได้ URL ตัวอย่างเช่น https://rph-line-bot.serveo.net/api/line-bot/callback
 
-*แนะนำให้ใช้ Webhook URL นี้สำหรับการทดสอบเท่านั้น โดยท่านสามารถนำ URL นี้ไปใช้ตั้งค่าสำหรับ Webhook Line Event ที่  https://developers.line.biz/console
+*แนะนำให้ใช้ Webhook URL นี้สำหรับการทดสอบเท่านั้น โดยท่านสามารถนำ URL นี้ไปใช้ตั้งค่าสำหรับ Webhook Line Event ที่ https://developers.line.biz
 
 ### Upgrading
+
 สามารถรันคำสั่งนี้เมื่อต้องการ Update ระบบ
 ```bash
 $ ./update.sh
 ```
 
 ### Bug Reports & Feature Requests
+
 หากพบข้อผิดพาด (Programming bug) หรือคุณสมบัติอื่น ๆ ที่อยากเพิ่มเติมในอนาคต สามารถรายงานได้ที่ [GitHub Issues](https://github.com/rph-dev/mbs/issues)
 
 ### Contributing
-ระบบ Message Broadcast System (MBS) พัฒนาด้วย Laravel Framework 5.8 และ Vue.js หากท่านมองเห็นว่ามี Code ส่วนใดเหมาะสมที่ควรแก้ไข หรือปรับปรุงเพิ่มประสิทธิภาพให้ดีขึ้น ท่านสามารถ Fork โปรเจคนี้เพื่อส่ง Pull Requests เข้ามาได้ทุกเมื่อ
+
+ระบบ Message Broadcast System (MBS) พัฒนาด้วย Laravel Framework 5.8 และ Vue.js หากท่านมองเห็นว่ามี Code ส่วนใดเหมาะสมที่ควรแก้ไข หรือปรับปรุงเพิ่มประสิทธิภาพให้ดีขึ้น ท่านสามารถ Fork โปรเจคนี้เพื่อร่วมพัฒนาที่ Branch Develop หรือสามารถแยก Branch เองได้ตามต้องการ จากนั้นท่านสามารถ ส่ง Pull Requests เข้ามาได้ทุกเมื่อ
 
 ### Security Vulnerabilities
 
 หากคุณค้นพบช่องโหว่ด้านความปลอดภัยภายใน Message Broadcast System (MBS) โปรดส่งอีเมลไปที่ Kongvut Sangkla ผ่านทาง [kongvut.s@rph.co.th](mailto:kongvut.s@rph.co.th) ช่องโหว่ความปลอดภัยทั้งหมดจะได้รับการแก้ไขทันที
 
 ### Credits
+
 ฝ่ายเทคโนโลยีสารสนเทศ โรงพยาบาลราชพฤกษ์ Ratchaphruek Hospital Public Company Limited (RPH), Thailand
 
 ### License
