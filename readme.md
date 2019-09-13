@@ -45,7 +45,7 @@ Project นี้เป็น project ที่เราพัฒนาขึ้
 - Linux OS หรือ Windows server (ติดตั้ง ffmpeg package หากต้องการส่งข้อความประเภทวิดีโอ)
 - MySQL 5.7+ หรือ MariaDB 10.2+
 - Nginx หรือ Apache Server
-- Git
+- Git และ Composer
 - PHP >= 7.1.3
 - BCMath PHP Extension
 - Ctype PHP Extension
@@ -58,9 +58,9 @@ Project นี้เป็น project ที่เราพัฒนาขึ้
 
 ### Installation
 
-ติดตั้งด้วย Docker
+ติดตั้งอัตโนมัติด้วย Docker
 
-1.  สร้างโปรเจคและ Docker Container
+1.  Git clone ระบบเพื่อสร้างโปรเจค
 
 ```bash
 $ git clone https://github.com/rph-dev/mbs
