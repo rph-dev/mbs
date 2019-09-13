@@ -5,7 +5,7 @@
     <div class="right-aside">
         <div class="right-page-header m-4">
             <div class="card-title">
-                ทั้งหมด (703 คน)
+                ทั้งหมด ({{ $users->total() }} คน)
             </div>
         </div>
         <div class="table-responsive">
