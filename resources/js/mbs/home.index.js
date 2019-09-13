@@ -36,9 +36,7 @@ const $app = new Vue({
 
         let _this = this;
         select2_contact.on('select2:unselect || select2:select', function (e) {
-            //let data = e.params.data;
             //console.log(data);
-            //console.log($(_this.el_tags.select2_contact).val());
             _this.changeContact();
         });
 
@@ -46,7 +44,6 @@ const $app = new Vue({
             await this.initHistoryContact();
             await this.loadMessage(this.history_contact_list.current_group_id);
         }
-        //$(this.el_tags.select2_contact).next(".select2-container").hide();
     },
     methods: {
         onChangeMessageType(messageType = 'text') {
@@ -230,7 +227,6 @@ const $app = new Vue({
                 if(!this.fields.files.length) return Swal.fire("พบข้อผิดพลาด!", "กรุณาระบุเลือกไฟล์", "error");
             }
             //
-            let _this = this;
             Swal.fire({
                 title: "ต้องการจะส่งข้อความนี้ไปที่ผู้ติดต่อ หรือไม่ ?",
                 text: "ยืนยันการ Broadcast",
@@ -239,10 +235,9 @@ const $app = new Vue({
                 confirmButtonColor: "#36bea6",
                 confirmButtonText: "ยืนยัน",
                 cancelButtonText: "ยกเลิก"
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.value) {
-                    _this.submitMsg();
-                    Swal.fire("Broadcast ข้อความเรียบร้อย!", _this.messages.group_name_list, "success");
+                    if(await this.submitMsg()) Swal.fire("Broadcast ข้อความเรียบร้อย!", _this.messages.group_name_list, "success");
                 }
             });
         },
@@ -254,6 +249,8 @@ const $app = new Vue({
             }, 500);
         },
         submitMsg: async function () {
+
+            let submit_status = false;
             /*
              Initialize the form data
            */
@@ -286,14 +283,13 @@ const $app = new Vue({
                     }
                 }).then(response => {
                 console.log('SUCCESS!!');
+                submit_status = true;
                 let _this = this;
                 _this.fields.title = null;
                 _this.fields.detail = null;
                 _this.$refs.files.value = null;
-                _this.fields.errors = response.data.errors;
-
+                _this.fields.errors = null;
                 //
-
                 _this.messages = {...response.data};
 
                 _this.filterContact(response.data.group_list, true);
@@ -301,20 +297,18 @@ const $app = new Vue({
                 _this.initHistoryContact();
             })
                 .catch(error => {
-                    console.log("Error");
                     if(error.response.data) {
+                        console.log("Error");
+                        submit_status = false;
                         let errors = Object.values(error.response.data.errors);
                         errors = errors.flat();
-                        let _this = this;
-                        _this.fields.errors = errors;
                         Swal.fire({
                             type: 'error',
                             title: 'พบข้อผิดพลาด!',
                             customClass: {
                                 content: 'text-left alert alert-danger mb-0',
                             },
-                            html: true,
-                            text: errors.map(item => '<i class="ti-close text-danger"></i> '+item+'<br>').join("")
+                            html: errors.map(item => `<i class="ti-close text-danger"></i> ${item}<br>`).join("")
                         });
                     }
                 });
@@ -322,6 +316,8 @@ const $app = new Vue({
             await this.scrollToEnd();
 
             await this.pleaseWait(true);
+
+            return submit_status;
         },
         handleFilesUpload(){
             /*
