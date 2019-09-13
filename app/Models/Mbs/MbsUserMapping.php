@@ -5,14 +5,27 @@ namespace App\Models\Mbs;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class MbsUserMapping
+ * @package App\Models\Mbs
+ */
 class MbsUserMapping extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string
+     */
     public $table = 'mbs_users_mapping';
 
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'user_id',
         'line_id',

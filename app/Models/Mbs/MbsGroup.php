@@ -5,12 +5,22 @@ namespace App\Models\Mbs;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class MbsGroup
+ * @package App\Models\Mbs
+ */
 class MbsGroup extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string
+     */
     public $table = 'mbs_group';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'group_id',
         'contact_id',

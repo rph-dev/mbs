@@ -11,10 +11,19 @@ use Eloquent as Model;
 class Position extends Model
 {
 
+    /**
+     * @var string
+     */
     public $table = 'positions';
 
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'name'
     ];
