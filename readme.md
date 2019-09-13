@@ -1,5 +1,9 @@
 ![ss1](./screen-shot1.png)
 
+![ss4](./screen-shot4.png)
+
+![ss5](./screen-shot5.png)
+
 ![ss3](./screen-shot3.gif) ![ss2](./screen-shot2.png)
 
 ### About
