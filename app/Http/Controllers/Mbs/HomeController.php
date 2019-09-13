@@ -249,13 +249,13 @@ class HomeController extends Controller
             // Image
             $this->validate($request, [
                 'contact_id' => 'required',
-                'mbs_files.*' => 'required|mimes:jpeg,png,jpg,gif|max:2048'
+                'mbs_files' => 'required|mimes:jpeg,png,jpg,gif|max:2048'
             ]);
         }else if($request->post('message_type') === 'video'){
             // Video
             $this->validate($request, [
                 'contact_id' => 'required',
-                'mbs_files.*' => 'required|mimes:mp4,qt,mov,avi|max:100000'
+                'mbs_files' => 'required|mimes:mp4,qt,mov,avi|max:100000'
             ]);
         }else{
             // Text
@@ -358,31 +358,12 @@ class HomeController extends Controller
         $files = [];
         foreach($filesInput as $file)
         {
-            /*
-            //Display File Name
-            echo 'File Name: '.$file->getClientOriginalName();
-            echo '<br>';
-
-            //Display File Extension
-            echo 'File Extension: '.$file->getClientOriginalExtension();
-            echo '<br>';
-
-            //Display File Real Path
-            echo 'File Real Path: '.$file->getRealPath();
-            echo '<br>';
-
-            //Display File Size
-            echo 'File Size: '.$file->getSize();
-            echo '<br>';
-
-            //Display File Mime Type
-            echo 'File Mime Type: '.$file->getMimeType();
-            */
 
             $mimeType = explode('/', $file->getMimeType());
             $uid = uniqid();
             $videoThumbnail = null;
 
+            // for video file
             if($mimeType[0] === 'video') {
 
                 $videoThumbnail = 'video_thumbnail/'.$messageId.'_'.$uid.'.jpg';
