@@ -5,12 +5,22 @@ namespace App\Models\Mbs;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class MbsMessage
+ * @package App\Models\Mbs
+ */
 class MbsMessage extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string
+     */
     public $table = 'mbs_messages';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'title',
         'detail',
@@ -44,6 +54,9 @@ class MbsMessage extends Model
 
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function files(){
         return $this->hasMany(
             'App\Models\Mbs\MbsMessageFiles',
@@ -52,6 +65,9 @@ class MbsMessage extends Model
         );
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function userProfile(){
         return $this->belongsTo(
             'App\Models\User\User',

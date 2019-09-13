@@ -69,7 +69,7 @@ class CustomGroupController extends Controller
         }
 
         $contacts = [
-            'แผนก//ฝ่าย' => $departmentList,
+            'แผนก/ฝ่าย' => $departmentList,
             'กลุ่มอื่น ๆ' => $groupCustomList,
             'ผู้ใช้งาน' => $usersList,
             'ผู้ใช้งานพิเศษ' => $usersCustomList

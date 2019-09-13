@@ -9,6 +9,10 @@ use App\Models\Mbs\MbsUserCustom;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * Class CustomUserController
+ * @package App\Http\Controllers\Mbs
+ */
 class CustomUserController extends Controller
 {
     /**

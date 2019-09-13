@@ -10,10 +10,19 @@ use Eloquent as Model;
 class Department extends Model
 {
 
+    /**
+     * @var string
+     */
     public $table = 'departments';
 
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'name'
     ];
@@ -46,6 +55,10 @@ class Department extends Model
         return $this->hasOne(User::class, 'department_id', 'id');
     }
 
+    /**
+     * @param null $departmentId
+     * @return Department[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public function users($departmentId = null){
         $department = $this::with(['user' => function($q){
             $q->with('position');
@@ -59,6 +72,9 @@ class Department extends Model
     }
 
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public static function getDepartmentList(){
         $departments = Department::pluck('name', 'id');
         return $departments;

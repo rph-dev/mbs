@@ -29,6 +29,10 @@
 
 namespace App\Traits;
 
+/**
+ * Trait LineApi
+ * @package App\Traits
+ */
 trait LineApi
 {
     /**

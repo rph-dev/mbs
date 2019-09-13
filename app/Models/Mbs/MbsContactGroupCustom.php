@@ -5,12 +5,22 @@ namespace App\Models\Mbs;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class MbsContactGroupCustom
+ * @package App\Models\Mbs
+ */
 class MbsContactGroupCustom extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string
+     */
     public $table = 'mbs_contact_group_custom';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'name',
         'detail',
@@ -35,6 +45,9 @@ class MbsContactGroupCustom extends Model
 
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function groupCustomUserList(){
         return $this->hasMany(
             'App\Models\Mbs\MbsContactGroupCustomUserList',

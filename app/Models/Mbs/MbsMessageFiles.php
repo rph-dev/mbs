@@ -5,12 +5,22 @@ namespace App\Models\Mbs;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class MbsMessageFiles
+ * @package App\Models\Mbs
+ */
 class MbsMessageFiles extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string
+     */
     public $table = 'mbs_messages_files';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'uid',
         'message_id',
@@ -44,10 +54,5 @@ class MbsMessageFiles extends Model
     public static $rules = [
 
     ];
-
-//    public function getFileNameAttribute()
-//    {
-//        return $this->attributes['file_path'].$this->attributes['file_name'];
-//    }
 
 }

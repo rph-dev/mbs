@@ -5,12 +5,22 @@ namespace App\Models\Mbs;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class MbsUserCustom
+ * @package App\Models\Mbs
+ */
 class MbsUserCustom extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string
+     */
     public $table = 'mbs_users_custom';
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'name',
         'password_rand',

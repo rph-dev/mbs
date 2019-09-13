@@ -74,10 +74,12 @@ class LineBotController extends Controller
     {
 
         $event = $this->parseEvents();
+
+        // for debugging
         //\File::put(public_path('lineEvents.text'), json_encode($event, JSON_PRETTY_PRINT));
         //\File::put(public_path('lineEvents2.text'), json_encode(request()->all(), JSON_PRETTY_PRINT));
-
         //$this->debug($this->getUserMapping($event[0]['source']['userId'], true));
+
         $this->lineUserId = $event[0]['source']['userId'];
         $this->replyToken = $event[0]['replyToken'];
         $this->lineMessage = $event[0]['message']['text'];
@@ -89,9 +91,7 @@ class LineBotController extends Controller
             // insert line id
             UserMapping::firstOrCreate(['line_id' => $this->lineUserId]);
 
-            //$this->debug($this->lineState['join']);
             if (in_array($this->lineMessage, ['join']) || (empty($this->lineState['join']) && in_array($this->lineMessage, ['1'])) || (($this->lineState['join']))) {
-                //$this->debug('xx');
                 $this->joinRPH();
             } else {
                 $this->listCommand(false);

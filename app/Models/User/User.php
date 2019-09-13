@@ -6,6 +6,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App\Models\User
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -45,6 +49,11 @@ class User extends Authenticatable
         return $query->where('activated', true);
     }
 
+    /**
+     * @param $query
+     * @param array $value
+     * @return mixed
+     */
     public function scopeExclude($query, array $value)
     {
         return $query->select( array_diff( $this->fillable, $value) );
@@ -71,6 +80,9 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function lineMapping()
     {
         return $this->hasOne('App\Models\Mbs\MbsUserMapping', 'user_id', 'id');
