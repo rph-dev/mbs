@@ -4,12 +4,22 @@
 // Variables
 @import 'variables';
 
+// Bootstrap
+@import '~bootstrap';
 
 html, body {
     font-family: $font-family-sans-serif;
     font-weight: 300;
     font-size: medium;
     margin: 0;
+}
+
+.bg-mbs {
+    background-color: #28a746!important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #eee;
 }
 
 .message-app {
@@ -231,4 +241,25 @@ html, body {
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
     }
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+main > .container {
+    padding: 60px 15px 0;
+}
+
+.footer {
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
 }

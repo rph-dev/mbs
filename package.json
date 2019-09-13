@@ -23,7 +23,5 @@
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
-    "dependencies": {
-        "@coreui/coreui": "^2.1.12"
-    }
+    "dependencies": {}
 }

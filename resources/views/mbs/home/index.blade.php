@@ -79,20 +79,23 @@
         </ul>
 
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item"><a @click="onChangeMessageType('text')" class="nav-link active" data-toggle="tab" href="#text-message" role="tab" aria-selected="true"><span><i class="fa fa-file-text-o"></i> Text</span></a></li>
-            <li class="nav-item"><a @click="onChangeMessageType('image')" class="nav-link" data-toggle="tab" href="#image-message" role="tab" aria-selected="false"><span><i class="fa fa-file-image-o"></i> Image</span></a></li>
-            <li class="nav-item"><a @click="onChangeMessageType('video')" class="nav-link" data-toggle="tab" href="#video-message" role="tab" aria-selected="false"><span><i class="fa fa-file-video-o"></i> Video</span></a></li>
+            <li class="nav-item">
+                <a @click="onChangeMessageType('text')" class="nav-link active" data-toggle="tab" href="#text-message" role="tab" aria-selected="true"><span><i class="fa fa-file-text-o"></i> Text</span></a>
+            </li>
+            <li class="nav-item">
+                <a @click="onChangeMessageType('image')" class="nav-link" data-toggle="tab" href="#image-message" role="tab" aria-selected="false"><span><i class="fa fa-file-image-o"></i> Image</span></a>
+            </li>
+            <li class="nav-item">
+                <a @click="onChangeMessageType('video')" class="nav-link" data-toggle="tab" href="#video-message" role="tab" aria-selected="false"><span><i class="fa fa-file-video-o"></i> Video</span></a>
+            </li>
         </ul>
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
 
-        </ul>
         <!-- Tab panes -->
         <form action="javascript:void(0)" accept-charset="UTF-8" enctype="multipart/form-data" @submit="onConfirmSubmit">
 
             <div class="tab-content tabcontent-border">
                 <!-- Detail Field -->
-                <div class="form-group col-md-12 p-t-10" v-show="prop_val.show_input_text">
+                <div class="form-group col-md-12 pt-3" v-show="prop_val.show_input_text">
                     {!! Form::label('detail', 'หัวเรื่อง:') !!}
                     {!! Form::text('title', null, ['class' => 'form-control', 'v-model' => 'fields.title']) !!}
                 </div>
@@ -110,7 +113,7 @@
 
                 </div>
                 <div class="tab-pane p-20" id="image-message" role="tabpanel">
-                    <div class="form-group col-md-12 p-t-10" v-show="!prop_val.show_input_text">
+                    <div class="form-group col-md-12 pt-3" v-show="!prop_val.show_input_text">
                         <a href="javascript:void(0)" @click="prop_val.show_input_text = true"><i class="ti-comment"></i> เพิ่มรายละเอียด</a>
                     </div>
                     <div class="col-md-12">
@@ -119,7 +122,7 @@
                     </div>
                 </div>
                 <div class="tab-pane p-20" id="video-message" role="tabpanel">
-                    <div class="form-group col-md-12 p-t-10" v-show="!prop_val.show_input_text">
+                    <div class="form-group col-md-12 pt-3" v-show="!prop_val.show_input_text">
                         <a href="javascript:void(0)" @click="prop_val.show_input_text = true"><i class="ti-comment"></i> เพิ่มรายละเอียด</a>
                     </div>
                     <div class="col-md-12">
