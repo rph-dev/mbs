@@ -58,7 +58,7 @@ Project นี้เป็น project ที่เราพัฒนาขึ้
 
 ### Installation
 
-ติดตั้งอัตโนมัติด้วย Docker
+กรณีติดตั้งอัตโนมัติด้วย Docker
 
 1.  Git clone ระบบเพื่อสร้างโปรเจค
 
@@ -122,6 +122,7 @@ $ ./create.sh
     ```bash
     http://127.0.0.1:8088
     ```
+
 6.  การตั้งค่าอื่น ๆ
 
     6.1 กรณีต้องการ Stop service
@@ -148,6 +149,43 @@ $ ./create.sh
     $ ./remove-data.sh
     ```
 
+7.  การแก้ปัญหาการติดตั้งไม่สำเร็จเบื้องต้น
+-   ตรวจสอบว่าภายในระบบได้ติดตั้ง Docker แล้วหรือยังด้วยคำสั่ง เช่น
+    ```bash
+    $ docker -v
+    Docker version 19.03.2, build 6a30dfc
+    ```
+-   กรณีต้องการติดตั้งระบบใหม่ทั้งหมด
+    ```bash
+    $ git pull # สำหรับ pull อัพเดท source code
+    $ #git stash # สำหรับใช้แก้ปัญหาถ้าหาก git pull ไม่ได้เนื่องจากไฟล์ภายในโปรเจคได้มีการแก้ไข และ source code รวมทับไฟล์ที่แก้ไขไม่ได้
+    # กรณีรันคำสั่ง git stash ต้องตั้งค่า Docker path ใหม่ในหัวข้อ Installation ข้อที่ 2
+    
+    $ cd docker
+    $ ./remove-data.sh
+    $ ./create.sh
+    $ ./install.sh
+    ```
+-   กรณี port 3306 ของ Container mbs-mariadb ชนกับ port อื่น ๆ ที่อยู่ภายในเครื่องสามารถแก้ไขได้ดังนี้
+    ```text
+    - แก้ไขการตั้งค่าที่ไฟล์ ./docker/start.sh (Container mbs-mariadb)
+    - สามารถลบออกบรรทัดนี้ออก -p 3306:3306 \ หรือเปลี่ยน port ใหม่เช่น -p 3309:3306
+    - สั่งเริ่ม Container ใหม่ด้วยคำสั่ง $ ./start.sh
+    ```
+-   กรณีต้องการเปลี่ยน port 8088 ของ Container mbs-webserver สามารถแก้ไขได้ดังนี้
+    ```text
+    - แก้ไขการตั้งค่าที่ไฟล์ ./docker/start.sh (Container mbs-webserver)
+    - เปลี่ยน port ใหม่เช่น -p 80:8000
+    - สั่งเริ่ม Container ใหม่ด้วยคำสั่ง $ ./start.sh
+    ```
+-   กรณีใช้งานใน Production mode (สำหรับใช้งานจริง)
+    ```text
+    - ต้องตั้งค่า SSL โดยสำหรับ Nginx ต้อง Mapping port เพิ่มเติมเช่น -p 443:443
+    - สามารถใช้ Database ระบบเดิมได้ (หากมีอยู่แล้ว)
+    - กำหนดค่าไฟล์ .env ของ Laravel เช่น APP_DEBUG=false APP_ENV=production APP_URL=https://your_real_url
+    - ข้อมูลเพิ่มเติมสำหรับการ Deployment ของ Laravel https://laravel.com/docs/5.8/deployment
+    ```
+    
 ### Line Webhook (Development)
 
 1.  ตั้งค่า SSH tunnel (SSH port forwarding) สำหรับ SSL
