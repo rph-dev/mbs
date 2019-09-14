@@ -64,7 +64,7 @@
 
     <div class="form-group col-md-12">
         {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
-        <a href="{!! url()->previous() !!}" class="btn btn-danger">Cancel</a>
+        <a href="../" class="btn btn-danger">Cancel</a>
     </div>
 
 </div>

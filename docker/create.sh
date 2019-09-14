@@ -15,4 +15,5 @@ docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && cp .env.example .env 
 echo "create files upload path &"
 docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && mkdir -m 775 ./public/storage"
 echo "chmod laravel path"
+git config core.fileMode false
 docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && chmod -R 755 ./ && chmod -R 777 ./storage && chmod -R 775 ./bootstrap/cache"

@@ -25,7 +25,7 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{ ((($_GET['page'] ?? 1)-1) *50)+$loop->iteration }}</td>
-                        <td><a href="/company/member/{{ $user->id }}" target="_blank">{{ $user->name }}</a></td>
+                        <td><a href="/company/member/{{ $user->id }}">{{ $user->name }}</a></td>
                         <td><span class="label label-inverse">{{ $user->position->name }}</span></td>
                         <td>{{ $user->department->name }}</td>
                         <td>{{ $user->line_code }}</td>
