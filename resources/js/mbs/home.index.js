@@ -237,7 +237,7 @@ const $app = new Vue({
                 cancelButtonText: "ยกเลิก"
             }).then(async (result) => {
                 if (result.value) {
-                    if(await this.submitMsg()) Swal.fire("Broadcast ข้อความเรียบร้อย!", _this.messages.group_name_list, "success");
+                    if(await this.submitMsg()) Swal.fire("Broadcast ข้อความเรียบร้อย!", this.messages.group_name_list, "success");
                 }
             });
         },
