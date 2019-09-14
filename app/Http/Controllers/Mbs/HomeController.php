@@ -498,7 +498,10 @@ class HomeController extends Controller
      * @return array
      */
     private function findLineIdList($groupId){
-        $groupList = \DB::table('v_mbs_group')->where('group_id', $groupId)->get();
+
+        $groupList = MbsGroup::select(['id', 'group_id', 'contact_id', 'total', 'created_at', 'updated_at'])
+            ->selectRaw('substr(`mbs_group`.`contact_id`,1,1) AS `contact_type`, substr(`mbs_group`.`contact_id`,2) AS `contact_only_id`')
+            ->where('group_id', $groupId)->get();
 
         $users = [];
         foreach ($groupList as $group){
