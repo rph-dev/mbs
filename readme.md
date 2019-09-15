@@ -66,7 +66,7 @@ Project นี้เป็น project ที่เราพัฒนาขึ้
 $ git clone https://github.com/rph-dev/mbs
 ```
 
-2.  ตั้งค่า Docker path โดยที่ไฟล์ ./docker/start.sh ให้กำหนด folder path ที่อยู่โปรเจคให้ถูกต้อง
+2.  ตั้งค่า Docker volume path โดยที่ไฟล์ ./docker/start.sh ให้กำหนด folder path ที่อยู่โปรเจคให้ถูกต้อง
 
     2.1 Container php-fpm
     
@@ -149,7 +149,7 @@ $ ./create.sh
     $ ./remove-data.sh
     ```
 
-7.  การแก้ปัญหาการติดตั้งไม่สำเร็จเบื้องต้น
+7.  การแก้ปัญหาเบื้องต้น หากติดตั้งไม่สำเร็จ
 -   ตรวจสอบว่าภายในระบบได้ติดตั้ง Docker แล้วหรือยังด้วยคำสั่ง เช่น
     ```bash
     $ docker -v
@@ -159,10 +159,10 @@ $ ./create.sh
     ```bash
     $ git pull # สำหรับ pull อัพเดท source code
     $ #git stash # สำหรับใช้แก้ปัญหาถ้าหาก git pull ไม่ได้เนื่องจากไฟล์ภายในโปรเจคได้มีการแก้ไข และ source code รวมทับไฟล์ที่แก้ไขไม่ได้
-    # กรณีรันคำสั่ง git stash ต้องตั้งค่า Docker path ใหม่ในหัวข้อ Installation ข้อที่ 2
+    # กรณีรันคำสั่ง git stash ต้องตั้งค่า Docker volume path ใหม่ในหัวข้อ Installation ข้อที่ 2
     
     $ cd docker
-    $ ./remove-data.sh
+    $ ./remove-data.sh  # หรือ ./remove.sh (หากไม่ต้องการลบข้อมูลออก)
     $ ./create.sh
     $ ./install.sh
     ```
