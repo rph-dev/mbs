@@ -249,13 +249,13 @@ class HomeController extends Controller
             // Image
             $this->validate($request, [
                 'contact_id' => 'required',
-                'mbs_files' => 'required|mimes:jpeg,png,jpg,gif|max:2048'
+                'mbs_files.*' => 'required|mimes:jpeg,png,jpg,gif|max:2048'
             ]);
         }else if($request->post('message_type') === 'video'){
             // Video
             $this->validate($request, [
                 'contact_id' => 'required',
-                'mbs_files' => 'required|mimes:mp4,qt,mov,avi|max:100000'
+                'mbs_files.*' => 'required|mimes:mp4,qt,mov,avi|max:100000'
             ]);
         }else{
             // Text
