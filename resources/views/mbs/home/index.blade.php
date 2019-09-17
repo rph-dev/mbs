@@ -107,7 +107,7 @@
                 <div class="tab-pane active" id="text-message" role="tabpanel">
 
                     <div class="col-md-12">
-                        {!! Form::label('detail', 'แนบไฟล์: ') !!}
+                        {!! Form::label('files', 'แนบไฟล์: ') !!}
                         <span class="font-12">*ประเภทไฟล์ที่รองรับ: jpeg, png, jpg, gif, doc, docx, xls, xlsx, ppt, pptx, pdf (เลือกอัพโหลดได้ทีละหลายไฟล์ ไฟล์ละไม่เกิน 4MB)</span>
                     </div>
 
@@ -117,7 +117,7 @@
                         <a href="javascript:void(0)" @click="prop_val.show_input_text = true"><i class="ti-comment"></i> เพิ่มรายละเอียด</a>
                     </div>
                     <div class="col-md-12">
-                        {!! Form::label('detail', 'แนบไฟล์: ') !!}
+                        {!! Form::label('files', 'แนบไฟล์: ') !!}
                         <span class="font-12">*ประเภทไฟล์ที่รองรับ: jpeg, png, jpg, gif (อัพโหลดได้ไฟล์ละไม่เกิน 2MB)</span>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         <a href="javascript:void(0)" @click="prop_val.show_input_text = true"><i class="ti-comment"></i> เพิ่มรายละเอียด</a>
                     </div>
                     <div class="col-md-12">
-                        {!! Form::label('detail', 'แนบไฟล์: ') !!}
+                        {!! Form::label('files', 'แนบไฟล์: ') !!}
                         <span class="font-12">*ประเภทไฟล์ที่รองรับ: mp4, mov, avi (อัพโหลดได้ไฟล์ละไม่เกิน 100MB)</span>
                     </div>
                 </div>

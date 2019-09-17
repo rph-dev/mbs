@@ -263,7 +263,7 @@ class HomeController extends Controller
                 'title'=>'required|max:255',
                 'detail' => 'required',
                 'contact_id' => 'required',
-                'mbs_files.*' => 'mimes:jpeg,png,jpg,gif,doc,docx,xls,xlsx,ppt,pptx,pdf|max:4048'
+                'mbs_files.*' => 'mimes:jpeg,png,jpg,gif,doc,docx,xls,xlsx,ppt,pptx,pdf|max:4096'
             ]);
         }
 

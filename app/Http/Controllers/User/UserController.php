@@ -66,7 +66,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'position_id' => 'required',
             'department_id' => 'required',
-            'line_code' => 'required|unique:users,line_code,',
+            'line_code' => 'required|unique:users,line_code',
             'birth_date' => 'required'
         ]);
 
@@ -107,23 +107,24 @@ class UserController extends Controller
             'name' => 'required|max:150',
             'email' => 'required|email|unique:users,email,'.$id,
             'position_id' => 'required',
-            'department_id' => 'required',
-            'line_code' => 'required|unique:users,line_code,'.$id,
+            'department_id' => 'required'
         ]);
 
-        if (!$request->post('unlink_line')){
-            MbsUserMapping::where('user_id', $id)->update(['user_id' => null]);
-        }
+        if ($request->has('unlink_line')){
+            if(!$request->post('unlink_line')) MbsUserMapping::where('user_id', $id)->update(['user_id' => null]);
+        } else {
 
-        $user = User::findOrFail($id);
+            $this->validate($request, [
+                'birth_date' => 'required',
+                'line_code' => 'required|unique:users,line_code,'.$id,
+            ]);
+        }
 
         $input = $request->only(['name', 'email', 'password', 'position_id', 'department_id', 'line_code', 'birth_date', 'activated']);
 
-        $user->fill($input);
+        $user = User::findOrFail($id)->update($input);
 
-        $user->save();
-
-        return redirect(route('company.member.edit', ['id' => $user->id]))->with('success', "Updated: user successful!");
+        return redirect(route('company.member.edit', ['id' => $id]))->with('success', "Updated: user successful!");
     }
 
     /**
