@@ -543,6 +543,9 @@ class HomeController extends Controller
         // custom group
         } else if($contactType === "c"){
             $users = $this->findUsersByUserCustom($contactOnlyId);
+        // All
+        } else if($contactType === "a"){
+            $users = $this->findAll();
         }
 
         return $users;
@@ -598,6 +601,16 @@ class HomeController extends Controller
     private function findUsersByUserCustom($contactOnlyId){
         return MbsUserCustom::find($contactOnlyId)
             ->join('mbs_users_mapping as map', 'map.user_custom', '=', 'mbs_users_custom.id')
+            ->pluck('map.line_id')->toArray();
+    }
+
+    /**
+     * @return mixed
+     */
+    private function findAll()
+    {
+        return User::userActive()
+            ->join('mbs_users_mapping as map', 'map.user_id', '=', 'users.id')
             ->pluck('map.line_id')->toArray();
     }
 }
