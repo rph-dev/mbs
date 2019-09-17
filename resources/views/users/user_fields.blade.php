@@ -58,7 +58,7 @@
     <div class="form-group col-md-6">
         <label>
             {{ Form::hidden('activated', 0) }}
-            {{ Form::checkbox('activated', 1, true) }} เปิดใช้งานบัญชี
+            {{ Form::checkbox('activated', 1, $user->activated ?? true) }} เปิดใช้งานบัญชี
         </label>
     </div>
 
