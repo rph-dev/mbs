@@ -68,29 +68,28 @@ class HomeController extends Controller
      */
     private function checkContactGroup($contactTypeIdList){
 
-        $totalContactList = count($contactTypeIdList);
-        $userProfile = Auth::user();
+        $contactTypeIdList = collect($contactTypeIdList);
+        $totalContactList = $contactTypeIdList->unique()->count();
 
+        $userProfile = Auth::user()->profile;
         $contactTypeList = MbsGroup::where([
-            'user_id' => $userProfile->id,
+            'user_id' => $userProfile->user_id,
             'position_id' => $userProfile->position_id,
             'department_id' => $userProfile->department_id
         ]);
 
-        foreach ($contactTypeIdList as $contact){
-            $contactTypeList->where('contact_id', $contact);
-        }
+        $contactTypeList->whereIn('contact_id', $contactTypeIdList);
 
-        $contactTypeList = $contactTypeList->where('total', $totalContactList)
-            ->groupBy('group_id')->first('group_id');
+        $contactTypeList = $contactTypeList->groupBy('group_id')
+            ->havingRaw('count(distinct contact_id) = '.$totalContactList)
+            ->first(['group_id', 'total']);
 
         $messageList = null;
         $groupList = null;
 
         if($contactTypeList){
-            $totalGroupList = MbsGroup::selectRaw('count(0) as total')->where('group_id', $contactTypeList->group_id)->first();
 
-            if((int)$totalGroupList->total === $totalContactList){
+            if((int)$contactTypeList->total === $totalContactList){
                 $messageList = $this->fetchMessage($contactTypeList->group_id);
                 $groupList = $this->fetchGroupList($contactTypeList->group_id);
             }
