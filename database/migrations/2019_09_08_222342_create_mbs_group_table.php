@@ -17,7 +17,7 @@ class CreateMbsGroupTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('group_id');
             $table->string('contact_id', 20);
-            $table->tinyInteger('total');
+            $table->integer('total');
             $table->bigInteger('user_id');
             $table->integer('position_id');
             $table->integer('department_id');
