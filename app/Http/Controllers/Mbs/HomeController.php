@@ -71,9 +71,9 @@ class HomeController extends Controller
         $contactTypeIdList = collect($contactTypeIdList);
         $totalContactList = $contactTypeIdList->unique()->count();
 
-        $userProfile = Auth::user()->profile;
+        $userProfile = Auth::user();
         $contactTypeList = MbsGroup::where([
-            'user_id' => $userProfile->user_id,
+            'user_id' => $userProfile->id,
             'position_id' => $userProfile->position_id,
             'department_id' => $userProfile->department_id
         ]);
