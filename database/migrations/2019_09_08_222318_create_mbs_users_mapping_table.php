@@ -15,10 +15,10 @@ class CreateMbsUsersMappingTable extends Migration
     {
         Schema::create('mbs_users_mapping', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->nullable();
             $table->string('line_id', 120);
-            $table->string('user_custom');
-            $table->string('state');
+            $table->string('user_custom')->nullable();
+            $table->string('state')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

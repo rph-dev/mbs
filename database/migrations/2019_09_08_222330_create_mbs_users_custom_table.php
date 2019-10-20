@@ -17,8 +17,8 @@ class CreateMbsUsersCustomTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('password_rand', 10);
-            $table->string('detail');
-            $table->string('activated');
+            $table->string('detail')->nullable();
+            $table->string('activated')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
