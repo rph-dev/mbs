@@ -21,7 +21,7 @@ class CreateMbsMessagesFilesTable extends Migration
             $table->string('file_name');
             $table->string('file_name_old');
             $table->string('file_path', 100);
-            $table->string('video_thumbnail', 100);
+            $table->string('video_thumbnail', 100)->nullable();
             $table->bigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();

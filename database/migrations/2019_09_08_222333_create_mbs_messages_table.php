@@ -15,8 +15,8 @@ class CreateMbsMessagesTable extends Migration
     {
         Schema::create('mbs_messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('detail');
+            $table->string('title')->nullable();
+            $table->text('detail')->nullable();
             $table->string('type', 10);
             $table->integer('position_id');
             $table->integer('department_id');

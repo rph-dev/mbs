@@ -16,7 +16,7 @@ class CreateMbsContactGroupCustomTable extends Migration
         Schema::create('mbs_contact_group_custom', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('detail');
+            $table->string('detail')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
