@@ -13,7 +13,7 @@ docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && composer install"
 echo "create .env & generate key"
 docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && cp .env.example .env && php artisan key:generate"
 echo "create files upload path &"
-docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && mkdir -m 775 ./public/storage"
+docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && mkdir ./public/storage && chmod -R 777 ./public/storage"
 echo "chmod laravel path"
 git config core.fileMode false
 docker exec -it mbs-php-fpm sh -c "cd /var/www/mbs-web/ && chmod -R 755 ./ && chmod -R 777 ./storage && chmod -R 775 ./bootstrap/cache"
